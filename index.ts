@@ -2,12 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const bd = require("body-parser");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const mainRoute = require("./src/router/main");
 
 const app = express();
 const port = 4000;
-const db_uri =
-  "mongodb+srv://arhamabeerahmed:ko4I6LGEal3wOMGN@cluster0.8pepskq.mongodb.net/";
+const db_uri = process.env.DB_URI;
 
 app.use(cors());
 app.use(bd.urlencoded({ extended: false }));

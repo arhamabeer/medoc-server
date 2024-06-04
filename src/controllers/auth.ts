@@ -51,10 +51,7 @@ const DocterSignIn = async (req: any, res: any) => {
     );
 
     if (check_pass) {
-      var token = jwt.sign(
-        { user: checkUser._id },
-        "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      );
+      var token = jwt.sign({ user: checkUser._id }, process.env.JWT_SECRET);
 
       res.status(200).send({ message: "Login Successful.", token });
     } else {
