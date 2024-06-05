@@ -1,10 +1,10 @@
-import { generateRandomString } from "../helpers/randoms";
+const generateRandomString = require("../helpers/randoms");
 
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const _authDocterModel = require("../models/authDocterSchema");
 
-const DocterSignUp = async (req: any, res: any) => {
+const DocterSignUp = async (req, res) => {
   let checkUser = await _authDocterModel.findOne({ email: req.body.email });
   console.log(checkUser);
   if (checkUser) {
@@ -31,12 +31,12 @@ const DocterSignUp = async (req: any, res: any) => {
     });
     create_user
       .save()
-      .then((response: any) => {
+      .then((response) => {
         res
           .status(200)
           .send({ result: response, message: "User Registed Successfully." });
       })
-      .catch((err: any) => {
+      .catch((err) => {
         res
           .status(400)
           .send({ result: err.message, message: "Can't register user." });
@@ -44,7 +44,7 @@ const DocterSignUp = async (req: any, res: any) => {
   }
 };
 
-const DocterSignIn = async (req: any, res: any) => {
+const DocterSignIn = async (req, res) => {
   var checkUser = await _authDocterModel.findOne({ email: req.body.email });
   if (!checkUser) {
     res.status(404).send({ result: checkUser, message: "User not Found." });
