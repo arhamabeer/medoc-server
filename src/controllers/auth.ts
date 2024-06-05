@@ -15,6 +15,7 @@ const DocterSignUp = async (req: any, res: any) => {
     let hash_pass = await bcrypt.hash(req.body.password, 12);
     let _registrationNo = generateRandomString(13);
     let create_user = new _authDocterModel({
+      name: req.body.name,
       email: req.body.email,
       password: hash_pass,
       address: req.body.address,
@@ -57,6 +58,7 @@ const DocterSignIn = async (req: any, res: any) => {
       var token = jwt.sign(
         {
           user: checkUser._id,
+          name: checkUser.name,
           email: checkUser.email,
           _regNo: checkUser.registrationNo,
           _createdAt: checkUser._createdAt,

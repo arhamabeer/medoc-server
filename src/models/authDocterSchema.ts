@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const authDocterSchema = new mongoose.Schema({
+  name: { type: String },
   email: { type: String },
   password: { type: String },
   address: { type: String },
