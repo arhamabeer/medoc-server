@@ -26,6 +26,7 @@ const DocterSignUp = async (req: any, res: any) => {
       contact: req.body.contact,
       age: req.body.age,
       registrationNo: _registrationNo,
+      _createdAt: new Date(),
     });
     create_user
       .save()
@@ -58,6 +59,7 @@ const DocterSignIn = async (req: any, res: any) => {
           user: checkUser._id,
           email: checkUser.email,
           _regNo: checkUser.registrationNo,
+          _createdAt: checkUser._createdAt,
         },
         process.env.JWT_SECRET
       );

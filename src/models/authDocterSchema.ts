@@ -12,6 +12,7 @@ const authDocterSchema = new mongoose.Schema({
   contact: { type: String },
   age: { type: Number },
   registrationNo: { type: String },
+  _createdAt: { type: String },
 });
 
 const authDocterModel = mongoose.model(
