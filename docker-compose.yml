@@ -1,0 +1,18 @@
+version: '1.0.0'
+
+services:
+  server:
+    build: .
+    ports:
+      - '4001:4000'
+    container_name: server_container
+    env_file:
+      - ./.env
+    depends_on:
+      - database
+
+  database: 
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    container_name: mongo_container
