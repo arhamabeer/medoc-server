@@ -1,3 +1,5 @@
+import { generateRandomString } from "../helpers/randoms";
+
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const _authDocterModel = require("../models/authDocterSchema");
@@ -11,7 +13,7 @@ const DocterSignUp = async (req: any, res: any) => {
       .send({ result: checkUser, message: "User already Registered." });
   } else {
     let hash_pass = await bcrypt.hash(req.body.password, 12);
-    let _registrationNo = "AxD";
+    let _registrationNo = generateRandomString(13);
     let create_user = new _authDocterModel({
       email: req.body.email,
       password: hash_pass,
