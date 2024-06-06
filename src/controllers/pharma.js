@@ -9,7 +9,7 @@ const AddSalt = async (req, res) => {
   if (_checkSalt) {
     res.status(403).send({
       result: _checkSalt,
-      message: `Salt Named ${req.body.name} already exists.`,
+      message: `Salt named ${req.body.name} already exists.`,
     });
   } else {
     const response = new _saltModel({
@@ -40,7 +40,7 @@ const AddMedicine = async (req, res) => {
   if (_checkMed) {
     res.status(403).send({
       result: _checkMed,
-      message: `Medicine Named ${req.body.name} already exists.`,
+      message: `Medicine named ${req.body.name} already exists.`,
     });
   } else {
     const response = new _medModel({
