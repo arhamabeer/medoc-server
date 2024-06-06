@@ -12,7 +12,16 @@ const DoctorSignUp = async (req, res) => {
       .send({ result: checkUser, message: "User already Registered." });
   } else {
     let hash_pass = await bcrypt.hash(req.body.password, 12);
-    let _registrationNo = generateRandomString(13);
+    let = generateRandomString(13);
+    let _registrationNo;
+    let regExists = true;
+
+    // Generate a unique MR_No
+    while (regExists) {
+      _registrationNo = generateRandomString(13);
+      regExists = await isMrExists(_registrationNo);
+    }
+
     let create_user = new _authDoctorModel({
       name: req.body.name,
       email: req.body.email,
