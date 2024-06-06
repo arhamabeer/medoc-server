@@ -24,7 +24,7 @@ const DoctorSignUp = async (req, res) => {
       gender: req.body.gender,
       experience: req.body.experience,
       contact: req.body.contact,
-      age: req.body.age,
+      dob: req.body.dob,
       role: "DOCTOR",
       registrationNo: _registrationNo,
       _createdAt: new Date(),
