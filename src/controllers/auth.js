@@ -2,10 +2,10 @@ const generateRandomString = require("../helpers/randoms");
 
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
-const _authDocterModel = require("../models/authDocterSchema");
+const _authDoctorModel = require("../models/authDoctorSchema");
 
-const DocterSignUp = async (req, res) => {
-  let checkUser = await _authDocterModel.findOne({ email: req.body.email });
+const DoctorSignUp = async (req, res) => {
+  let checkUser = await _authDoctorModel.findOne({ email: req.body.email });
   console.log(checkUser);
   if (checkUser) {
     res
@@ -14,7 +14,7 @@ const DocterSignUp = async (req, res) => {
   } else {
     let hash_pass = await bcrypt.hash(req.body.password, 12);
     let _registrationNo = generateRandomString(13);
-    let create_user = new _authDocterModel({
+    let create_user = new _authDoctorModel({
       name: req.body.name,
       email: req.body.email,
       password: hash_pass,
@@ -26,6 +26,7 @@ const DocterSignUp = async (req, res) => {
       experience: req.body.experience,
       contact: req.body.contact,
       age: req.body.age,
+      role: "DOCTOR",
       registrationNo: _registrationNo,
       _createdAt: new Date(),
     });
@@ -44,8 +45,8 @@ const DocterSignUp = async (req, res) => {
   }
 };
 
-const DocterSignIn = async (req, res) => {
-  var checkUser = await _authDocterModel.findOne({ email: req.body.email });
+const DoctorSignIn = async (req, res) => {
+  var checkUser = await _authDoctorModel.findOne({ email: req.body.email });
   if (!checkUser) {
     res.status(404).send({ result: checkUser, message: "User not Found." });
   } else {
@@ -73,4 +74,4 @@ const DocterSignIn = async (req, res) => {
   }
 };
 
-module.exports = { DocterSignUp, DocterSignIn };
+module.exports = { DoctorSignUp, DoctorSignIn };

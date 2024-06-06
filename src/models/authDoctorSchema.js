@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const authDocterSchema = new mongoose.Schema({
+const authDoctorSchema = new mongoose.Schema({
   name: { type: String },
   email: { type: String },
   password: { type: String },
@@ -12,13 +12,14 @@ const authDocterSchema = new mongoose.Schema({
   experience: { type: Number },
   contact: { type: String },
   age: { type: Number },
+  role: { type: String },
   registrationNo: { type: String },
   _createdAt: { type: String },
 });
 
-const authDocterModel = mongoose.model(
-  "authenticationDocter",
-  authDocterSchema
+const authDoctorModel = mongoose.model(
+  "authenticationDoctor",
+  authDoctorSchema
 );
 
-module.exports = authDocterModel;
+module.exports = authDoctorModel;

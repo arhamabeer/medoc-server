@@ -1,7 +1,7 @@
 const express = require("express");
+const { AddSalt } = require("../controllers/pharma");
 const router = express.Router();
 
-router.use("/", require("./authRouter"));
-router.use("/", require("./pharmaRouter"));
+router.post("/AddSalt", AddSalt);
 
 module.exports = router;

@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { DocterSignIn, DocterSignUp } = require("../controllers/auth");
+const { DoctorSignIn, DoctorSignUp } = require("../controllers/auth");
 
-router.post("/signupDocter", DocterSignUp);
-router.post("/signinDocter", DocterSignIn);
+router.post("/signupDoctor", DoctorSignUp);
+router.post("/signinDoctor", DoctorSignIn);
 
 module.exports = router;
