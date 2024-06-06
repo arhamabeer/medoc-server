@@ -16,7 +16,7 @@ const AddPatient = async (req, res) => {
 
     // Generate a unique MR_No
     while (mrExists) {
-      generated_MR_No = generateRandomString(13);
+      generated_MR_No = generateRandomString(7);
       mrExists = await isMrExists(generated_MR_No);
     }
 

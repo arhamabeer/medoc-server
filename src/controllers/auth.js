@@ -3,6 +3,7 @@ const generateRandomString = require("../helpers/randoms");
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 const _authDoctorModel = require("../models/authDoctorSchema");
+const { isRegExists } = require("../middlewares/mrNoCheck");
 
 const DoctorSignUp = async (req, res) => {
   let checkUser = await _authDoctorModel.findOne({ email: req.body.email });
@@ -19,7 +20,7 @@ const DoctorSignUp = async (req, res) => {
     // Generate a unique MR_No
     while (regExists) {
       _registrationNo = generateRandomString(13);
-      regExists = await isMrExists(_registrationNo);
+      regExists = await isRegExists(_registrationNo);
     }
 
     let create_user = new _authDoctorModel({
