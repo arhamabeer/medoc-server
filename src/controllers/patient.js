@@ -1,4 +1,4 @@
-const generateRandomString = require("../helpers/randoms");
+const { generateRandomString } = require("../helpers/randoms");
 const { isMrExists } = require("../middlewares/mrNoCheck");
 
 const _patientModel = require("../models/patientSchema");
@@ -14,9 +14,8 @@ const AddPatient = async (req, res) => {
     let generated_MR_No;
     let mrExists = true;
 
-    // Generate a unique MR_No
     while (mrExists) {
-      generated_MR_No = generateRandomString(7);
+      generated_MR_No = generateRandomString(11);
       mrExists = await isMrExists(generated_MR_No);
     }
 

@@ -1,4 +1,4 @@
-const generateRandomString = require("../helpers/randoms");
+const { generateRandomString } = require("../helpers/randoms");
 
 const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
@@ -13,7 +13,6 @@ const DoctorSignUp = async (req, res) => {
       .send({ result: checkUser, message: "User already Registered." });
   } else {
     let hash_pass = await bcrypt.hash(req.body.password, 12);
-    let = generateRandomString(13);
     let _registrationNo;
     let regExists = true;
 
