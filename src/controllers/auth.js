@@ -6,7 +6,6 @@ const _authDoctorModel = require("../models/authDoctorSchema");
 
 const DoctorSignUp = async (req, res) => {
   let checkUser = await _authDoctorModel.findOne({ email: req.body.email });
-  console.log(checkUser);
   if (checkUser) {
     res
       .status(403)

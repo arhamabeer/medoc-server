@@ -5,7 +5,6 @@ const AddSalt = async (req, res) => {
   let _checkSalt = await _saltModel.findOne({
     name: req.body.name.toLowerCase(),
   });
-  console.log(_checkSalt, req.body.name.toLowerCase());
   if (_checkSalt) {
     res.status(403).send({
       result: _checkSalt,
@@ -36,7 +35,6 @@ const AddMedicine = async (req, res) => {
   let _checkMed = await _medModel.findOne({
     name: req.body.name.toUpperCase(),
   });
-  console.log(_checkMed, req.body.name.toUpperCase());
   if (_checkMed) {
     res.status(403).send({
       result: _checkMed,
