@@ -1,4 +1,5 @@
-const _saltModel = require("../models/salts");
+const _saltModel = require("../models/saltsSchema");
+const _medModel = require("../models/medicineSchema");
 
 const AddSalt = async (req, res) => {
   let _checkSalt = await _saltModel.findOne({
@@ -16,9 +17,52 @@ const AddSalt = async (req, res) => {
       useFor: req.body.useFor,
       _createdAt: new Date(),
     });
-    const _res = await response.save();
-    console.log(_res);
+    response
+      .save()
+      .then((result) => {
+        res
+          .status(200)
+          .send({ result: result, message: "Salt Added Successfully." });
+      })
+      .catch((err) => {
+        res
+          .status(400)
+          .send({ result: err.message, message: "Can't add new salt." });
+      });
   }
 };
 
-module.exports = { AddSalt };
+const AddMedicine = async (req, res) => {
+  let _checkMed = await _medModel.findOne({
+    name: req.body.name.toUpperCase(),
+  });
+  console.log(_checkMed, req.body.name.toUpperCase());
+  if (_checkMed) {
+    res.status(403).send({
+      result: _checkMed,
+      message: `Medicine Named ${req.body.name} already exists.`,
+    });
+  } else {
+    const response = new _medModel({
+      name: req.body.name.toUpperCase(),
+      useFor: req.body.useFor,
+      power: req.body.power,
+      salt: req.body.salts,
+      _createdAt: new Date(),
+    });
+    response
+      .save()
+      .then((result) => {
+        res
+          .status(200)
+          .send({ result: result, message: "Medicine Added Successfully." });
+      })
+      .catch((err) => {
+        res
+          .status(400)
+          .send({ result: err.message, message: "Can't add new Medicine." });
+      });
+  }
+};
+
+module.exports = { AddSalt, AddMedicine };
