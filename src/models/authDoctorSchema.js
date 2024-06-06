@@ -11,7 +11,7 @@ const authDoctorSchema = new mongoose.Schema({
   gender: { type: String },
   experience: { type: Number },
   contact: { type: String },
-  age: { type: Number },
+  dob: { type: String },
   role: { type: String },
   registrationNo: { type: String },
   _createdAt: { type: String },
