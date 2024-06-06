@@ -47,7 +47,7 @@ const AddMedicine = async (req, res) => {
       name: req.body.name.toUpperCase(),
       useFor: req.body.useFor,
       power: req.body.power,
-      salt: req.body.salts,
+      salts: req.body.salts,
       _createdAt: new Date(),
     });
     response

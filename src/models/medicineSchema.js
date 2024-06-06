@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const medicineSchema = new mongoose.Schema({
   name: { type: String },
   power: { type: String },
-  salt: { type: [String] },
+  salts: { type: [String] },
   useFor: { type: [String] },
   _createdAt: { type: String },
 });
