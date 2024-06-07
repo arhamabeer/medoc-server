@@ -69,6 +69,7 @@ const DoctorSignIn = async (req, res) => {
           user: checkUser._id,
           name: checkUser.name,
           email: checkUser.email,
+          role: checkUser.role,
           _regNo: checkUser.registrationNo,
           _createdAt: checkUser._createdAt,
         },
