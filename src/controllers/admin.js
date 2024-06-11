@@ -52,7 +52,17 @@ const AdminSignUp = async (req, res) => {
 };
 
 const AdminSignIn = async (req, res) => {
-  var checkUser = await _adminModel.findOne({ email: req.body.email });
+  var checkUser = await _adminModel
+    .findOne(
+      { email: req.body.email },
+      {
+        _createdAt: 0,
+        __v: 0,
+        _id: 0,
+      }
+    )
+    .lean();
+
   if (!checkUser) {
     res.status(404).send({ result: checkUser, message: "User not Found." });
   } else {
@@ -62,6 +72,7 @@ const AdminSignIn = async (req, res) => {
     );
 
     if (check_pass) {
+      delete checkUser.password;
       var token = jwt.sign(
         {
           user: checkUser._id,
@@ -73,8 +84,11 @@ const AdminSignIn = async (req, res) => {
         },
         process.env.JWT_SECRET
       );
-
-      res.status(200).send({ message: "Login Successful.", token });
+      res.status(200).send({
+        message: "Login Successful.",
+        token: token,
+        userData: checkUser,
+      });
     } else {
       res.status(401).send({ message: "your credentials are wrong." });
     }
